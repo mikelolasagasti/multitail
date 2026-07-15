@@ -2272,12 +2272,15 @@ void set_default_parameters_if_not_given_do(proginfo *cur, int pi_index)
 			}
 			/* we should inform the user of any errors while executing
 			 * the regexp! */
-			else
+			else if (rc != REG_NOMATCH)
 			{
 				char *error = convert_regexp_error(rc, &ppf[ppf_index].regex);
 
 				if (error)
-					error_popup("Set default parameters", -1, "Execution of regular expression failed with error:\n%s\n", error);
+				{
+					error_popup("Set default parameters", -1, "Execution of regular expression failed with error:\nRegular expression: %s\n%s\n", ppf[ppf_index].re_str, error);
+					myfree(error);
+				}
 			}
 		}
 
