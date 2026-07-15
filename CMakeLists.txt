@@ -117,6 +117,7 @@ add_executable(multitail
     mem.h
     misc.h
     mt.h
+    mt_regex.h
     my_pty.h
     scrollback.h
     selbox.h

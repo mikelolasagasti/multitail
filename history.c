@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <time.h>
-#include <regex.h>
+#include "mt_regex.h"
 #include <string.h>
 #include <errno.h>
 #include <sys/socket.h>

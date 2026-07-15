@@ -1,5 +1,5 @@
 #include <ctype.h>
-#include <regex.h>
+#include "mt_regex.h"
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>

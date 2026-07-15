@@ -1,7 +1,7 @@
 #ifndef __MT_H__
 #define __MT_H__
 
-#include <regex.h>
+#include "mt_regex.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <arpa/inet.h>
