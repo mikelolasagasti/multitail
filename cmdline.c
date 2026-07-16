@@ -493,6 +493,8 @@ void do_commandline(int argc, char *argv[])
 	int mark_interval = 0;
 	char syslog_noreverse = 0;
 	char cont = 0;
+	char collapse_cr = 0;
+	char default_collapse_cr = 0;
 	char marker_of_other_window = 0;
 	char no_marker_of_other_window = 0;
 	char bufferwhat = -1;
@@ -555,6 +557,11 @@ void do_commandline(int argc, char *argv[])
 		else if (strcmp(argv[loop], "--cont") == 0)
 		{
 			cont = 1;
+		}
+		else if (strcmp(argv[loop], "--collapse-cr") == 0)
+		{
+			collapse_cr = 1;
+			default_collapse_cr = 1;
 		}
 		else if (strcmp(argv[loop], "--mark-interval") ==0)
 		{
@@ -1020,6 +1027,9 @@ void do_commandline(int argc, char *argv[])
 
 			cur -> cont = cont;
 			cont = 0;
+
+			cur -> collapse_cr = collapse_cr;
+			collapse_cr = default_collapse_cr;
 
 			/* 'watch' functionality configuration (more or less) */
 			cur -> restart.restart = restart;

@@ -3221,6 +3221,43 @@ int process_global_keys(int what_help, NEWWIN *popup, char cursor_shift)
 	return c;
 }
 
+/* Collapse lone CR overwrite sequences (tqdm / HuggingFace Trainer).
+ * A lone '\r' discards the current incomplete line fragment (TTY semantics).
+ * CRLF ("\r\n") is left as a normal line ending (CR dropped, LF kept).
+ * Default off — call only when cur->collapse_cr is set.
+ */
+static void collapse_cr_overwrite(char *buf)
+{
+	char *src = buf;
+	char *dst = buf;
+	char *line_start = buf;
+
+	while (*src)
+	{
+		if (*src == '\r')
+		{
+			if (src[1] == '\n')
+			{
+				/* Windows CRLF: drop CR, keep LF via the normal path */
+				src++;
+				continue;
+			}
+			/* lone CR: discard current fragment, rewrite from line start */
+			dst = line_start;
+			src++;
+			continue;
+		}
+		if (*src == '\n')
+		{
+			*dst++ = *src++;
+			line_start = dst;
+			continue;
+		}
+		*dst++ = *src++;
+	}
+	*dst = 0x00;
+}
+
 char process_input_data(int win_nr, proginfo *cur, char *data_in, int new_data_offset, int n_bytes_added, double now)
 {
 	char *pnt = data_in;
@@ -3231,7 +3268,13 @@ char process_input_data(int win_nr, proginfo *cur, char *data_in, int new_data_o
 
 	data_in[new_data_offset + n_bytes_added] = 0x00;
 
-	if (strchr(&data_in[new_data_offset], '\n'))
+	if (cur -> collapse_cr)
+		collapse_cr_overwrite(data_in);
+
+	/* After collapse_cr, offsets into data_in may no longer match new_data_offset;
+	 * scan the whole buffer for newlines in that case.
+	 */
+	if (strchr(cur -> collapse_cr ? data_in : &data_in[new_data_offset], '\n'))
 	{
 		if (cur -> cont) /* reconnect lines with '\' */
 		{

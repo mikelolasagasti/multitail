@@ -1434,7 +1434,8 @@ void usage(void)
 	format_help("-p x [y]", NULL, "set linewrap (l=left/a=all/r=right/s=syslog,S=syslog w/o procname,o=offset -> 'y',w=wordwrap)");
 	format_help("-P", NULL, "like -p but for all following files");
 	format_help("-b n", NULL, "set TAB-width");
-	format_help(NULL, "--cont", "reconnect lines with a '\' at the end");
+	format_help(NULL, "--cont", "reconnect lines with a '\\' at the end");
+	format_help(NULL, "--collapse-cr", "treat lone CR as TTY overwrite (tqdm / HF Trainer logs)");
 	fprintf(stderr, "\n");
 
 	help_header("line prefixes");

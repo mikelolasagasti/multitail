@@ -271,6 +271,9 @@ Proces a configurationfile item via the commandline in case you cannot edit the 
 .B "\--cont"
 Reconnect lines with a '\' at the end.
 .TP
+.B "\--collapse-cr"
+Treat a lone carriage return (CR) as a TTY-style overwrite: discard the current incomplete line fragment and keep only the text after the last CR. Useful for following Python tqdm / HuggingFace Trainer logs that rewrite progress bars with CR instead of LF. Windows CRLF line endings are preserved as normal newlines. Default is off.
+.TP
 .B "\--mark-interval interval"
 When nothing comes in, print a '---mark---' line every 'interval' seconds.
 .TP

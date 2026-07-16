@@ -1598,6 +1598,9 @@ void write_script(void)
 				if (cur -> cont)
 					fprintf(fh, " --cont");
 
+				if (cur -> collapse_cr)
+					fprintf(fh, " --collapse-cr");
+
 				/* terminal emulation */
 				if (cur -> cdef.term_emul == TERM_ANSI)
 					fprintf(fh, " -cT ANSI"); /* vt100 */
