@@ -1,6 +1,6 @@
 #include "doassert.h"
 #include <sys/types.h>
-#include <regex.h>
+#include "mt_regex.h"
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>

@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <stdarg.h>
-#include <regex.h>
+#include "mt_regex.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 

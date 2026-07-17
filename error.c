@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
-#include <regex.h>
+#include "mt_regex.h"
 #if defined(__GLIBC__)
 #include <execinfo.h>
 #endif
@@ -61,4 +61,3 @@ void error_exit_(BOOL show_errno, BOOL show_st, char *file, const char *function
 
 	exit(EXIT_FAILURE);
 }
-

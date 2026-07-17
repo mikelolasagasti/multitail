@@ -1,5 +1,5 @@
 #include <sys/types.h>
-#include <regex.h>
+#include "mt_regex.h"
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/wait.h>
