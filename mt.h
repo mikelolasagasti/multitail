@@ -306,6 +306,8 @@ typedef struct _subwindow_
 
 	char cont;		/* "re-connect" lines with \ at the end */
 
+	char collapse_cr;	/* treat lone \r as TTY overwrite (tqdm / HF logs) */
+
 	char add_timestamp;
 
 	char *label;		/* put in front of each line */

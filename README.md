@@ -20,6 +20,12 @@ On Cygwin, you need the libpcre-devel package.
 
 Tips
 ----
+Following Python tqdm / HuggingFace Trainer logs that use carriage-return
+progress bars? Start MultiTail with `--collapse-cr` so lone `\r` overwrites
+are collapsed instead of forming multi-hundred-KB lines:
+
+    multitail --collapse-cr train.log
+
 You can also use MultiTail to view logfiles on other hosts!
 How?
 Like this:
